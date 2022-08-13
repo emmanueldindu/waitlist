@@ -5,6 +5,7 @@ const connectDB = require('./db')
 const List = require('./schema')
 const bodyParser = require('body-parser')
 
+
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
@@ -25,7 +26,7 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended: false}))
 
 
-app.get('/', (req, res) => res.render('index'))
+app.get('/', (req, res) => res.render('/index'))
 
 
 app.post('/', urlencodedParser, async (req, res) => {
@@ -52,7 +53,7 @@ if(connectDB){
 const start = async() => {
     try {
        await connectDB()
-       app.listen(port, () => console.log(`LearnDev app listening on port ${port}!`))
+       app.listen(process.env.PORT || 4000, () => console.log(`LearnDev app listening on port ${port}!`))
  
     } catch (error) {
        console.log(error)
